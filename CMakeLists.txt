@@ -1,8 +1,10 @@
-cmake_minimum_required(VERSION 2.9.0)
+cmake_minimum_required(VERSION 3.5.0)
 
-project(gpx)
+if (APPLE)
+    set(CMAKE_MACOSX_RPATH ON)
+endif (APPLE)
 
-SET(BUILD_VERSION "v0.0.1")
+SET(BUILD_VERSION "0.0.1")
 # Find Git Version Patch
 IF(EXISTS "${CMAKE_SOURCE_DIR}/.git")
     if(NOT GIT)
@@ -27,10 +29,13 @@ IF(EXISTS "${CMAKE_SOURCE_DIR}/.git")
         SET(BUILD_VERSION ${GIT_VERSION})
     ENDIF()
 ENDIF()
-message("BUILD_VERSION:${BUILD_VERSION}")
+
+project(gpx VERSION ${BUILD_VERSION})
+
+message("GPXLIB BUILD_VERSION:${BUILD_VERSION}")
 
 CONFIGURE_FILE(
-    "${CMAKE_SOURCE_DIR}/cmake_uninstall.cmake.in"
+    "cmake_uninstall.cmake.in"
     "${CMAKE_BINARY_DIR}/cmake_uninstall.cmake"
     IMMEDIATE @ONLY)
 ADD_CUSTOM_TARGET(uninstall

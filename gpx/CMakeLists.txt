@@ -12,7 +12,7 @@ set(SRC
     DateTime.cpp
     String.cpp
     Unsigned.cpp
-    DGPSStation
+    DGPSStation.cpp
     Fix.cpp
     Degrees.cpp
     Longitude.cpp
@@ -47,7 +47,7 @@ if(BUILD_SHARED_LIBS)
     endif()
 endif()
 
-add_library(${PROJECT_NAME} ${SRC})
+add_library( ${PROJECT_NAME} ${SRC} )
 target_link_libraries(${PROJECT_NAME} ${EXPAT_LIBRARIES})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${BUILD_VERSION})
